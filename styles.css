@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap');
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            color: rgb(18, 18, 18);
+        }
+        p {
+            text-align: justify;
+        }
+        .page_link {
+            color: grey;
+            font-size: small;
+            text-decoration: none;
+        }
+
+        .chapter {
+
+        }
+
+        .page {
+            background-color: #frfrfr
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            background-color: #fafafa;
+            position: sticky; /* Make the header sticky */
+            top: 0;          /* Stick to the top of the viewport */
+            z-index: 1000;  /* Ensure it stays above other content */
+        }
+
+        .chapter-title {
+            text-align: center;
+            flex-grow: 1;
+            margin: 0 20px; /* Optional, to give some spacing */
+        }
+
+        .extra-text {
+            text-align: right;
+        }
+
+        .invisible-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .highlight {
+            background-color: #e8d1ff;
+        }
+         #footer {
+            display: none; /* Keep this as it is for hiding the footer initially */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #fafafa;
+            padding: 5px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1000;  /* Ensure it stays above other content */
+        }
+        .footer-content {
+            max-width: 1000px; /* Set maximum width */
+            margin: 0 auto;    /* Center the footer content */
+            padding: 0 10px;   /* Optional padding for small screens */
+        }
+        ul {
+            column-count: 13; /* Number of columns */
+            column-gap: 10px; /* Space between columns */
+            padding: 0; /* Remove default padding */
+            list-style: none; /* Remove default bullet points */
+        }
+
