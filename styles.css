@@ -1,79 +1,133 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;800&display=swap');
 
-        body {
-            font-family: 'DM Sans', sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-            color: rgb(18, 18, 18);
-        }
-        p {
-            text-align: justify;
-        }
-        .page_link {
-            color: grey;
-            font-size: small;
-            text-decoration: none;
-        }
+body {
+	font-family: 'Source Serif 4', serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 21px;
+	margin: 0 auto;
+	color: #393939;
+}
 
-        .chapter {
+/* Apply these styles when the screen width is larger than 768px (typically tablets and desktops) */
+@media (min-width: 768px) {
+	body {
+		font-size: initial;
+		/* Use browser default */
+		line-height: 28.5px;
+	}
+}
 
-        }
+h1 {
+	font-weight: 800;
+}
 
-        .page {
-            background-color: #frfrfr
-        }
+p {
+	text-align: justify;
+}
 
-        .page-header {
-            display: flex;
-            align-items: center;
-            background-color: #e1e1e1;
-            position: sticky; /* Make the header sticky */
-            top: 0;          /* Stick to the top of the viewport */
-            z-index: 1000;  /* Ensure it stays above other content */
-            padding-right: 10px;
-            padding-left: 10px;
-        }
+.page-block {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
 
-        .chapter-title {
-            text-align: center;
-            flex-grow: 1;
-            margin: 0 20px; /* Optional, to give some spacing */
-        }
+.page {
+	background-color: #frfrfr
+}
 
-        .extra-text {
-            text-align: right;
-        }
+.header {
+    display: flex;
+    justify-content: center; /* Center the link container */
+    padding: 10px 20px; /* Add some padding */
+	background-color: #f4f4f4;
+	position: sticky; /* Make the header sticky */
+	top: 0; /* Stick to the top of the viewport */
+	z-index: 1000; /* Ensure it stays above other content */
+	padding: 5px;
+    border-bottom: 1px solid #ccc; /* Bottom border */
+	border-bottom-color: rgb(223, 223, 223);
+	border-bottom-width: 0.666667px;
+	border-bottom-style: solid;
+	border-top-color: rgb(223, 223, 223);
+	border-top-width: 0.666667px;
+	border-top-style: solid;
+}
 
-        .invisible-link {
-            color: inherit;
-            text-decoration: none;
-        }
+.link-container {
+    display: flex; /* Use flexbox for links */
+    justify-content: space-between; /* Space out the links */
+    max-width: 1000px; /* Limit max width */
+    width: 100%; /* Full width of the header */
+}
 
-        .highlight {
-            background-color: #e8d1ff;
-        }
-         #footer {
-            display: none; /* Keep this as it is for hiding the footer initially */
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: #fafafa;
-            padding: 5px;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            z-index: 1000;  /* Ensure it stays above other content */
-        }
-        .footer-content {
-            max-width: 1000px; /* Set maximum width */
-            margin: 0 auto;    /* Center the footer content */
-            padding: 0 10px;   /* Optional padding for small screens */
-        }
-        ul {
-            column-count: 13; /* Number of columns */
-            column-gap: 10px; /* Space between columns */
-            padding: 0; /* Remove default padding */
-            list-style: none; /* Remove default bullet points */
-        }
+@media (max-width: 1000px) {
+    .link-container {
+        padding: 0 15px; /* Add extra horizontal padding */
+    }
+}
 
+.page-link {
+    text-decoration: none; /* Remove underline */
+	color: grey;
+	text-decoration: none;
+}
+
+@media (min-width: 768px) {
+	.page-link {
+        text-size: small;
+    }
+}
+
+.link:nth-child(2) {
+    margin: auto; /* Center the second link */
+}
+
+.chapter-title {
+	text-align: center;
+	flex-grow: 1;
+	margin: 0 20px;
+	/* Optional, to give some spacing */
+}
+
+.extra-text {
+	text-align: right;
+}
+
+.invisible-link {
+	color: inherit;
+	text-decoration: none;
+	cursor: text; /* Prevent hand cursor on hover */
+}
+
+.highlight {
+	background-color: #e8d1ff;
+}
+
+#footer {
+	display: none;
+	/* Keep this as it is for hiding the footer initially */
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #fafafa;
+	padding: 5px;
+	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	z-index: 1000;
+	/* Ensure it stays above other content */
+}
+
+.footer-content {
+	max-width: 1000px; /* Set maximum width */
+	margin: 0 auto; /* Center the footer content */
+	padding: 0 10px; /* Optional padding for small screens */
+}
+
+ul {
+	column-count: 13; /* Number of columns */
+	column-gap: 10px; /* Space between columns */
+	padding: 0; /* Remove default padding */
+	list-style: none; /* Remove default bullet points */
+}
