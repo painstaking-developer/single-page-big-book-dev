@@ -94,10 +94,10 @@ p {
 	text-align: right;
 }
 
-.invisible-link {
-	color: inherit;
-	text-decoration: none;
-	cursor: text; /* Prevent hand cursor on hover */
+span a {
+    color: inherit;
+    text-decoration: none;
+    cursor: text; /* Prevent hand cursor on hover */
 }
 
 .highlight {
