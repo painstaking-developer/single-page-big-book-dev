@@ -8,6 +8,11 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+<div id="tools">
+    <button onclick="copyLink()">Copy link to selected text</button>
+    <button onclick="window.open('https://www.google.com/search?q=' + encodeURIComponent(getSelectedText()), '_blank')">Search definition</button>
+    <button onclick="hideHeaderToolbar()">Cancel</button>
+</div>
 
 
 <article>
@@ -8987,11 +8992,5 @@ in this city have found themselves,</p>
 </article>
 
 
-<div id="footer">
-    <div class="footer-content">
-        <button onclick="copyLink()">Copy link to selected text</button>
-        <button onclick="window.open('https://www.google.com/search?q=' + encodeURIComponent(getSelectedText()), '_blank')">Search definition</button>
-    </div>
-</div>
 </body>
 </html>

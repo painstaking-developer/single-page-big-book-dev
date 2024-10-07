@@ -119,25 +119,21 @@ span a {
 	background-color: #e8d1ff;
 }
 
-#footer {
+#tools {
 	display: none;
 	/* Keep this as it is for hiding the footer initially */
 	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: #fafafa;
+	top: 0; left: 0; width: 100%; padding: 10px;
+	background-color: #f4f4f4;
 	padding: 5px;
-	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 	text-align: center;
-	z-index: 1000;
-	/* Ensure it stays above other content */
+	z-index: 2000;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .footer-content {
 	max-width: 1000px; /* Set maximum width */
 	margin: 0 auto; /* Center the footer content */
-	padding: 0 10px; /* Optional padding for small screens */
 }
 
 ul {
@@ -145,4 +141,20 @@ ul {
 	column-gap: 10px; /* Space between columns */
 	padding: 0; /* Remove default padding */
 	list-style: none; /* Remove default bullet points */
+}
+
+button {
+    background-color: transparent; /* No background color */
+    border: 2px solid #393939; /* Border color */
+    color: #393939; /* Text color */
+    padding: 10px 20px; /* Padding */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+button:hover {
+    background-color: #393939; /* Background color on hover */
+    color: white; /* Text color on hover */
 }

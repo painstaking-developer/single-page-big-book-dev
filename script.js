@@ -4,15 +4,16 @@ document.addEventListener('mouseup', handleTextSelection);
 document.addEventListener('touchend', handleTextSelection);
 
 function handleTextSelection() {
-    selectedText = window.getSelection().toString();
-    const footer = document.getElementById('footer');
+    selectedText = window.getSelection().toString();  // Update selectedText here
+    const header = document.getElementById('tools');
     const googleLink = document.getElementById('google-link');
 
     if (selectedText) {
-        footer.style.display = 'block';
+        header.style.display = 'block';
         googleLink.href = `https://www.google.com/search?q=${encodeURIComponent(selectedText)}`;
+        googleLink.textContent = `Search "${selectedText}" on Google`;
     } else {
-        footer.style.display = 'none';
+        header.style.display = 'none';
     }
 }
 
@@ -21,11 +22,19 @@ function copyLink() {
     const formattedLink = `${url}#:~:text=${encodeURIComponent(selectedText)}`;
 
     navigator.clipboard.writeText(formattedLink)
+        .then(() => {
+            console.log('Link copied to clipboard:', formattedLink);
+        })
         .catch(err => console.error('Error copying text: ', err));
 
     // Hide the footer after copying
-    document.getElementById('footer').style.display = 'none';
+    document.getElementById('tools').style.display = 'none';
 }
+
+function hideHeaderToolbar() {
+    document.getElementById('tools').style.display = 'none'
+}
+
 
 function highlightParagraph() {
     // Remove existing highlights
