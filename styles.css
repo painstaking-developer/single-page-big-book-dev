@@ -21,15 +21,20 @@ body {
 
 h1 {
 	font-weight: 800;
+	font-size: 30px;
+	text-align: center;
 }
 
 p {
 	text-align: justify;
-	padding-right: 15px;
+}
+
+.page-content {
+    padding-right: 15px;
     padding-left: 15px;
 }
 
-.page-block {
+section {
 	max-width: 1000px;
 	margin: 5px auto;
 	background-color: #ffffff;
@@ -40,53 +45,51 @@ p {
 
 .page-content {
 	padding: 0 20px;
+    margin-right: 3px;
+    margin-left: 3px;
 }
 
-.page {
-	background-color: #frfrfr
-}
-
-.header {
+header {
     display: flex;
     justify-content: center;
-    padding-top: 10px;
+    padding-top: 5px;
     padding-right: 35px;
     padding-left: 35px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     background-color: white;
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
+    transition: box-shadow 0.3s ease;
 }
 
-.header.shadow {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid lightgrey;
+header.shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.link-container {
+nav {
     display: flex; /* Use flexbox for links */
     justify-content: space-between; /* Space out the links */
     max-width: 1000px; /* Limit max width */
     width: 100%; /* Full width of the header */
 }
 
-
-@media (max-width: 1000px) {
-    .link-container {
-        padding: 0 15px; /* Add extra horizontal padding */
-    }
+ul a {
+	color: grey;
+	text-decoration: none;
 }
 
-.page-link {
-    text-decoration: none; /* Remove underline */
+h1 a {
+    text-decoration: none;
+}
+
+nav a {
 	color: grey;
 	text-decoration: none;
 }
 
 @media (min-width: 768px) {
-	.page-link {
+	nav a {
         text-size: small;
     }
 }

@@ -1,6 +1,9 @@
 let selectedText = '';
 
-document.addEventListener('mouseup', function() {
+document.addEventListener('mouseup', handleTextSelection);
+document.addEventListener('touchend', handleTextSelection);
+
+function handleTextSelection() {
     selectedText = window.getSelection().toString();
     const footer = document.getElementById('footer');
     const googleLink = document.getElementById('google-link');
@@ -11,7 +14,7 @@ document.addEventListener('mouseup', function() {
     } else {
         footer.style.display = 'none';
     }
-});
+}
 
 function copyLink() {
     const url = window.location.href;
@@ -37,19 +40,23 @@ function highlightParagraph() {
         const element = document.querySelector(hash);
         if (element) {
             element.classList.add('highlight');
+            // Scroll up slightly
+            const offset = 70; // Adjust this value as needed
+            const topPosition = element.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top: topPosition });
         }
     }
 }
 
 function getSelectedText() {
-        return window.getSelection().toString();
-    }
+    return window.getSelection().toString();
+}
 
 document.addEventListener("DOMContentLoaded", highlightParagraph);
 window.addEventListener("hashchange", highlightParagraph);
 
 window.addEventListener('scroll', function() {
-    const headers = document.querySelectorAll('.header');
+    const headers = document.querySelectorAll('header');
     headers.forEach(header => {
         const rect = header.getBoundingClientRect();
         if (rect.top <= 0) {
