@@ -41,7 +41,7 @@ function highlightParagraph() {
         if (element) {
             element.classList.add('highlight');
             // Scroll up slightly
-            const offset = 70; // Adjust this value as needed
+            const offset = 50; // Adjust this value as needed
             const topPosition = element.getBoundingClientRect().top + window.scrollY - offset;
             window.scrollTo({ top: topPosition });
         }
