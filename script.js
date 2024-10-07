@@ -47,3 +47,15 @@ function getSelectedText() {
 
 document.addEventListener("DOMContentLoaded", highlightParagraph);
 window.addEventListener("hashchange", highlightParagraph);
+
+window.addEventListener('scroll', function() {
+    const headers = document.querySelectorAll('.header');
+    headers.forEach(header => {
+        const rect = header.getBoundingClientRect();
+        if (rect.top <= 0) {
+            header.classList.add('shadow');
+        } else {
+            header.classList.remove('shadow');
+        }
+    });
+});
