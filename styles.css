@@ -25,6 +25,10 @@ h1 {
 	text-align: center;
 }
 
+h3 {
+	text-align: center;
+}
+
 p {
 	text-align: justify;
 }
@@ -74,18 +78,17 @@ nav {
     width: 100%; /* Full width of the header */
 }
 
-ul a {
-	color: grey;
+a {
+    color: grey;
 	text-decoration: none;
+}
+
+a:hover {
+    color: #393939
 }
 
 h1 a {
-    text-decoration: none;
-}
-
-nav a {
-	color: grey;
-	text-decoration: none;
+    color: #393939;
 }
 
 @media (min-width: 768px) {
@@ -136,8 +139,15 @@ span a {
 	margin: 0 auto; /* Center the footer content */
 }
 
-ul {
+ul.page_columns {
 	column-count: 13; /* Number of columns */
+	column-gap: 10px; /* Space between columns */
+	padding: 0; /* Remove default padding */
+	list-style: none; /* Remove default bullet points */
+}
+
+ul.chapter_columns {
+	column-count: 4; /* Number of columns */
 	column-gap: 10px; /* Space between columns */
 	padding: 0; /* Remove default padding */
 	list-style: none; /* Remove default bullet points */
