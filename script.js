@@ -1,41 +1,3 @@
-let selectedText = '';
-
-document.addEventListener('mouseup', handleTextSelection);
-document.addEventListener('touchend', handleTextSelection);
-
-function handleTextSelection() {
-    selectedText = window.getSelection().toString();  // Update selectedText here
-    const header = document.getElementById('tools');
-    const googleLink = document.getElementById('google-link');
-
-    if (selectedText) {
-        header.style.display = 'block';
-        googleLink.href = `https://www.google.com/search?q=${encodeURIComponent(selectedText)}`;
-        googleLink.textContent = `Search "${selectedText}" on Google`;
-    } else {
-        header.style.display = 'none';
-    }
-}
-
-function copyLink() {
-    const url = window.location.href;
-    const formattedLink = `${url}#:~:text=${encodeURIComponent(selectedText)}`;
-
-    navigator.clipboard.writeText(formattedLink)
-        .then(() => {
-            console.log('Link copied to clipboard:', formattedLink);
-        })
-        .catch(err => console.error('Error copying text: ', err));
-
-    // Hide the footer after copying
-    document.getElementById('tools').style.display = 'none';
-}
-
-function hideHeaderToolbar() {
-    document.getElementById('tools').style.display = 'none'
-}
-
-
 function highlightParagraph() {
     // Remove existing highlights
     const highlighted = document.querySelector('.highlight');
@@ -57,10 +19,6 @@ function highlightParagraph() {
     }
 }
 
-function getSelectedText() {
-    return window.getSelection().toString();
-}
-
 document.addEventListener("DOMContentLoaded", highlightParagraph);
 window.addEventListener("hashchange", highlightParagraph);
 
@@ -74,4 +32,33 @@ window.addEventListener('scroll', function() {
             header.classList.remove('shadow');
         }
     });
+});
+
+document.addEventListener('dblclick', function (event) {
+    // Get the element that was double-clicked
+    const targetElement = event.target;
+
+    // Get the ID of the clicked element
+    const elementId = targetElement.id; // Get the current element ID
+
+    // Only proceed if the element has an ID
+    if (elementId) {
+        // Get the current URL without the fragment identifier
+        const currentUrl = window.location.href.split('#')[0];
+
+        // Construct the target URL by appending the element ID as a fragment
+        const targetUrl = `${currentUrl}#${elementId}`;
+
+        // Redirect to the constructed URL
+        window.location.href = targetUrl;
+
+        // Copy the target URL (with the element ID) to the clipboard
+        navigator.clipboard.writeText(targetUrl)
+            .then(() => {
+                console.log('URL copied to clipboard:', targetUrl);
+            })
+            .catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+    }
 });

@@ -7,14 +7,13 @@ body {
 	line-height: 21px;
 	margin: 0 auto;
 	color: #393939;
-	background-color: #f4f4f4;
+	background-color: #fafbfd;
 }
 
 /* Apply these styles when the screen width is larger than 768px (typically tablets and desktops) */
 @media (min-width: 768px) {
 	body {
 		font-size: initial;
-		/* Use browser default */
 		line-height: 28.5px;
 	}
 }
@@ -33,29 +32,21 @@ p {
 	text-align: justify;
 }
 
-.page-content {
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
 section {
 	max-width: 1000px;
 	margin: 5px auto;
 	background-color: #ffffff;
 	border: 1px solid #ccc;
-	border-radius: 3px;
 	padding-top: 20px;
 }
 
 .page-content {
-	padding: 0 20px;
+	padding: 0 15px;
     margin-right: 3px;
     margin-left: 3px;
 }
 
 header {
-    display: flex;
-    justify-content: center;
     padding-top: 5px;
     padding-right: 35px;
     padding-left: 35px;
@@ -65,6 +56,18 @@ header {
     top: 0;
     z-index: 1000;
     transition: box-shadow 0.3s ease;
+}
+
+blockquote {
+    border-left: 2px solid lightgrey;
+    padding-left: 10px;
+    margin: 0 20px;
+}
+
+@media (max-width: 768px) {
+    blockquote {
+        margin: 0 10px;
+    }
 }
 
 header.shadow {
@@ -122,21 +125,12 @@ span a {
 	background-color: #e8d1ff;
 }
 
-#tools {
-	display: none;
-	/* Keep this as it is for hiding the footer initially */
-	position: fixed;
-	top: 0; left: 0; width: 100%; padding: 10px;
-	background-color: #f4f4f4;
-	padding: 5px;
-	text-align: center;
-	z-index: 2000;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ol {
+    text-align: justify;
 }
 
-.footer-content {
-	max-width: 1000px; /* Set maximum width */
-	margin: 0 auto; /* Center the footer content */
+ol li {
+    padding-bottom: 5px;
 }
 
 ul.page_columns {
@@ -147,24 +141,18 @@ ul.page_columns {
 }
 
 ul.chapter_columns {
-	column-count: 4; /* Number of columns */
+	column-count: 5; /* Number of columns */
 	column-gap: 10px; /* Space between columns */
 	padding: 0; /* Remove default padding */
 	list-style: none; /* Remove default bullet points */
 }
 
-button {
-    background-color: transparent; /* No background color */
-    border: 2px solid #393939; /* Border color */
-    color: #393939; /* Text color */
-    padding: 10px 20px; /* Padding */
-    font-size: 16px; /* Font size */
-    cursor: pointer; /* Pointer cursor on hover */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
-}
+@media (max-width: 768px) {
+	ul.page_columns {
+        column-count: 9; /* Number of columns */
+    }
 
-button:hover {
-    background-color: #393939; /* Background color on hover */
-    color: white; /* Text color on hover */
+    ul.chapter_columns {
+        column-count: 3; /* Number of columns */
+    }
 }
