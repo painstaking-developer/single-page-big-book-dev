@@ -62,31 +62,3 @@ document.addEventListener('dblclick', function (event) {
             });
     }
 });
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-    .then(() => console.log('Service Worker Registered'));
-}
-// /service-worker.js
-self.addEventListener('fetch', () => {});
-let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-
-  // Show your install button or link
-  document.getElementById('installButton').style.display = 'block';
-
-  document.getElementById('installButton').addEventListener('click', () => {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the install prompt');
-      } else {
-        console.log('User dismissed the install prompt');
-      }
-      deferredPrompt = null;
-    });
-  });
-});
