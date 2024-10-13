@@ -156,3 +156,19 @@ ul.chapter_columns {
         column-count: 3; /* Number of columns */
     }
 }
+
+hr.page-separator {
+    border: none;                /* Remove default border */
+    text-align: center;          /* Center align text */
+    height: 1em;                /* Set height to fit text */
+    line-height: 1em;           /* Align text vertically */
+    font-size: 1em;           /* Adjust font size */
+    position: relative;          /* Enable positioning of pseudo-element */
+}
+
+hr.page-separator::before {
+    content: '✦✧✦';              /* Content to display */
+    position: absolute;          /* Positioning */
+    left: 50%;                   /* Center horizontally */
+    transform: translateX(-50%);/* Shift back to center */
+}
