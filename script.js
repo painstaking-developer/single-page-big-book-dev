@@ -3,6 +3,7 @@ function highlightParagraph() {
     const highlighted = document.querySelector('.highlight');
     if (highlighted) {
         highlighted.classList.remove('highlight');
+        notes.highlightRemoved(highlighted);
     }
 
     // Highlight the new paragraph
@@ -11,15 +12,84 @@ function highlightParagraph() {
         const element = document.querySelector(hash);
         if (element) {
             element.classList.add('highlight');
-            // Scroll up slightly
-            const offset = 50; // Adjust this value as needed
-            const topPosition = element.getBoundingClientRect().top + window.scrollY - offset;
-            window.scrollTo({ top: topPosition });
+            notes.highlightAdded(element);
+
+            // Check if the element is inside a block with the class "page content"
+            const pageContent = element.closest('.p');
+            if (pageContent) {
+                // Scroll to the middle of the browser window
+                const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+                const offset = window.innerHeight / 2 - element.clientHeight / 2; // Centering
+                const topPosition = elementPosition - offset;
+                window.scrollTo(0, topPosition); // No animation
+            } else {
+                // Original logic: Scroll with a fixed offset
+                const offset = 50; // Adjust as needed
+                const topPosition = element.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo(0, topPosition); // No animation
+            }
         }
     }
 }
 
-document.addEventListener("DOMContentLoaded", highlightParagraph);
+function openSettingsPane() {
+    document.getElementById('settings-overlay').classList.add('active');
+    document.getElementById('settings-pane').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeSettingsPane() {
+    document.getElementById('settings-overlay').classList.remove('active');
+    document.getElementById('settings-pane').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeSettingsPane();
+        notes.closePane();
+    }
+});
+
+function toggleDarkMode() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeToggle(newTheme);
+}
+
+function updateThemeToggle(theme) {
+    const track = document.getElementById('dark-mode-track');
+    const icon = document.getElementById('theme-icon');
+    if (track) {
+        if (theme === 'dark') track.classList.add('active');
+        else track.classList.remove('active');
+    }
+    if (icon) icon.innerHTML = theme === 'dark' ? '&#9790;' : '&#9728;';
+}
+
+let zoomLevel = parseInt(localStorage.getItem('zoom') || '100', 10);
+
+function adjustZoom(delta) {
+    zoomLevel = Math.max(50, Math.min(200, zoomLevel + delta));
+    localStorage.setItem('zoom', zoomLevel);
+    applyZoom();
+}
+
+function applyZoom() {
+    document.body.style.zoom = zoomLevel + '%';
+    const label = document.getElementById('zoom-level');
+    if (label) label.textContent = zoomLevel + '%';
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    highlightParagraph();
+    const theme = document.documentElement.getAttribute('data-theme') || 'light';
+    updateThemeToggle(theme);
+    applyZoom();
+});
 window.addEventListener("hashchange", highlightParagraph);
 
 window.addEventListener('scroll', function() {
@@ -35,13 +105,23 @@ window.addEventListener('scroll', function() {
 });
 
 document.addEventListener('dblclick', function (event) {
+    // Ignore double-clicks inside the settings pane
+    if (event.target.closest('#settings-pane')) return;
+
     // Get the element that was double-clicked
     const targetElement = event.target;
 
     // Get the ID of the clicked element
-    const elementId = targetElement.id; // Get the current element ID
+    elementId = targetElement.id; // Get the current element ID
 
-    // Only proceed if the element has an ID
+    // Check if the element does not have an ID, and get the parent ID if necessary
+    if (!elementId && targetElement.parentElement) {
+        elementId = targetElement.parentElement.id; // Get the parent element ID
+    }
+
+    console.log("elementId", elementId)
+
+    // Only proceed if we have an ID
     if (elementId) {
         // Get the current URL without the fragment identifier
         const currentUrl = window.location.href.split('#')[0];
@@ -51,6 +131,7 @@ document.addEventListener('dblclick', function (event) {
 
         // Redirect to the constructed URL
         window.location.href = targetUrl;
+        notes.closePane();
 
         // Copy the target URL (with the element ID) to the clipboard
         navigator.clipboard.writeText(targetUrl)
